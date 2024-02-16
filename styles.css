@@ -1,15 +1,23 @@
 .grid-container {
   display: flex;
   flex-direction: column;
+  max-width: 960px;
+  height: 960px;
+  justify-content: stretch;
+  align-items: stretch;
 }
 
-.grid-row {
+.grid-row {  
   display: flex;  
+  flex: 1;
+  justify-content: stretch; 
+  align-items: stretch;   
 }
 
 .grid-square {
   border-style: solid;
-  padding: 20px;   
+  /* padding: 20px;  */
+  flex: 1;
 }
 
 .grid-square:hover {  
