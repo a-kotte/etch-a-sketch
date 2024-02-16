@@ -1,11 +1,12 @@
 const defaultGridSize = 16;
 const gridContainer = document.querySelector('.grid-container');
+let lightness = 100;
 
 function removeGrid() {
   let gridRows = document.querySelectorAll('.grid-row');
   gridRows.forEach((gridRow) => {
     gridRow.remove();
-  });
+  });  
 }
 
 function buildGrid(gridSize) {
@@ -21,26 +22,27 @@ function buildGrid(gridSize) {
       gridRow.appendChild(gridSquare);  
     }
   }
+  lightness = 100;
   highlightSquares();
 }
 
 function highlightSquares() {  
   let gridSquares = document.querySelectorAll('.grid-square');
-  gridSquares.forEach((gridSquare) => {
-    let randomRed = Math.floor(Math.random() * 255);
-    let randomGreen = Math.floor(Math.random() * 255);
-    let randomBlue = Math.floor(Math.random() * 255);
-    let randomColor = 'rgb(' + randomRed + ',' + randomGreen + ',' + randomBlue + ');';
-    gridSquare.addEventListener('mouseenter', (event) => {    
+  gridSquares.forEach((gridSquare) => {        
+    gridSquare.addEventListener('mouseenter', (event) => {
+    let randomHue = Math.floor(Math.random() * 360);
+    let saturation = '80%';             
+      let randomColor = 'hsl(' + randomHue + ',' + saturation + ',' + lightness + '%);'
       gridSquare.setAttribute('style', 'background-color: ' + randomColor);
-
+      if (lightness >= 10) {
+        lightness -= 10;
+      } 
     });
   }, false);
 }
 
 // Build the initial grid
 buildGrid(defaultGridSize);
-highlightSquares()
 
 // prompt user for new grid
 function promptForGrid() {
