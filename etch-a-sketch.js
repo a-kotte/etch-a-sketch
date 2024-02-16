@@ -27,8 +27,12 @@ function buildGrid(gridSize) {
 function highlightSquares() {  
   let gridSquares = document.querySelectorAll('.grid-square');
   gridSquares.forEach((gridSquare) => {
+    let randomRed = Math.floor(Math.random() * 255);
+    let randomGreen = Math.floor(Math.random() * 255);
+    let randomBlue = Math.floor(Math.random() * 255);
+    let randomColor = 'rgb(' + randomRed + ',' + randomGreen + ',' + randomBlue + ');';
     gridSquare.addEventListener('mouseenter', (event) => {    
-      gridSquare.setAttribute('style', 'background-color: red');
+      gridSquare.setAttribute('style', 'background-color: ' + randomColor);
 
     });
   }, false);
@@ -53,6 +57,7 @@ function promptForGrid() {
   removeGrid();  
   buildGrid(Number(gridSize));
 }
+
 let newGridButton = document.querySelector('.new-grid-button');
 newGridButton.addEventListener('click', promptForGrid);
 
